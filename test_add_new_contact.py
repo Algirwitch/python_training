@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from selenium.webdriver.firefox.webdriver import WebDriver
 import unittest
+from contact import Contact
 
 def is_alert_present(wd):
     try:
@@ -19,36 +20,36 @@ class test_add_new_contact(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.open_new_page(wd)
-        self.create_new_contact(wd, firstname="asdfaasdf", lastname="asdfeee", address="dfsf", mobile="asfsdg", email="dfs")
+        self.create_new_contact(wd, Contact(firstname="asdfaasdf", lastname="asdfeee", address="dfsf", mobile="asfsdg", email="dfs"))
         self.logout(wd)
     def test_add_empty_new_contact(self):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.open_new_page(wd)
-        self.create_new_contact(wd, firstname="", lastname="", address="", mobile="", email="")
+        self.create_new_contact(wd, Contact(firstname="", lastname="", address="", mobile="", email=""))
         self.logout(wd)
 
     def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
 
-    def create_new_contact(self, wd, firstname, lastname, address, mobile, email):
+    def create_new_contact(self, wd, contact):
         # fill contact form
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(firstname)
+        wd.find_element_by_name("firstname").send_keys(contact.firstname)
         wd.find_element_by_name("lastname").click()
         wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(lastname)
+        wd.find_element_by_name("lastname").send_keys(contact.lastname)
         wd.find_element_by_name("address").click()
         wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys(address)
+        wd.find_element_by_name("address").send_keys(contact.address)
         wd.find_element_by_name("mobile").click()
         wd.find_element_by_name("mobile").clear()
-        wd.find_element_by_name("mobile").send_keys(mobile)
+        wd.find_element_by_name("mobile").send_keys(contact.mobile)
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys(email)
+        wd.find_element_by_name("email").send_keys(contact.email)
         # enter data
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
