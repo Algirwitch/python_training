@@ -13,10 +13,10 @@ def app(request):
 
 def test_add_new_contact(app):
     app.session.login(username="admin", password="secret")
-    app.create_new_contact(Contact(firstname="asdfaasdf", lastname="asdfeee", address="dfsf", mobile="asfsdg", email="dfs"))
+    app.new_cont.create(Contact(firstname="asdfaasdf", lastname="asdfeee", address="dfsf", mobile="asfsdg", email="dfs"))
     app.session.logout()
 
 def test_add_empty_new_contact(app):
     app.session.login(username="admin", password="secret")
-    app.create_new_contact(Contact(firstname="", lastname="", address="", mobile="", email=""))
+    app.new_cont.create(Contact(firstname="", lastname="", address="", mobile="", email=""))
     app.session.logout()
