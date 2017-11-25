@@ -28,6 +28,13 @@ class NContHelper:
         # enter data
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
+    def delete_first_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
+        wd.switch_to_alert().accept()
+
+
+
     def open_new_page(self):
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
