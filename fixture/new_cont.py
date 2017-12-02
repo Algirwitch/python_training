@@ -37,8 +37,10 @@ class NContHelper:
 
     def modify_first_contact(self, new_contact_data):
         wd = self.app.wd
+        # submit modification
         wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
         self.filling_contact_form(new_contact_data)
+        #enter upgrate
         wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
 
     def open_new_page(self):
